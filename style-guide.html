@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Style Guide</title>
+    <link rel="shortcut icon" href="inc/img/favicon.ico">
+    <link rel="apple-touch-icon" href="inc/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="inc/css/styles.css">
+    <link rel="stylesheet" href="inc/css/custom.css">
+ </head>
+<body>
+    <div class="wrapper">
+        <div class="container" role="main">
+            <div class="main-content full-width clearfix">
+                <h2>Style Guide</h2>
+                <p>Courtesy of Sean Cooper at Three&amp;me
+                <h2 class="pattern-heading">Typefaces</h2>
+                <p>Arial</p>
+                <p><em>Arial Italic</em></p>
+                <h2 class="pattern-heading">Headings</h2>
+                <h2>Heading One</h2>
+                <h2>Heading Two</h2>
+                <h3>Heading Three</h3>
+                <h4>Heading Four</h4>
+                <h5>Heading Five</h5>
+                <h6>Heading Six</h6>
+                <h2 class="pattern-heading">Paragraphs</h2>
+                <p>A paragraph (from the Greek paragraphos, "to write beside" or "written beside") is a self-contained unit of a discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.</p>
+                <p>Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing, used to organize longer prose.</p>
+                <h2 class="pattern-heading">Blockquotes</h2>
+                <blockquote>A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main text as a paragraph, or block of text, and typically distinguished visually using indentation and a different typeface or smaller size quotation.</blockquote>
+                <h2 class="pattern-heading">Inline Text Elements</h2>
+                <div class="text">
+                    <p><a href="#">This is a text link</a></p>
+                    <p><strong>Strong is used to indicate strong importance</strong></p>
+                    <p><em>This text has added emphasis</em></p>
+                    <p>The
+                        <strong>b element</strong> is stylistically different text from normal text, without any special importance
+                    </p>
+                    <p>The <em>i element</em> is text that is set off from the normal text</p>
+                    <p>The
+                        <u>u element</u> is text with an unarticulated, though explicitly rendered, non-textual annotation
+                    </p>
+                    <p>
+                        <del>This text is deleted</del>
+                        and
+                        <ins>This text is inserted</ins>
+                    </p>
+                    <p><s>This text has a strikethrough</s></p>
+                    <p>Superscript<sup>®</sup></p>
+                    <p>Subscript for things like H<sub>2</sub>O</p>
+                    <p>
+                        <small>This small text is small for for fine print, etc.</small>
+                    </p>
+                    <p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+                    <p>Keybord input: <kbd>Cmd</kbd></p>
+                    <p>
+                        <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This text is a short inline quotation</q>
+                    </p>
+                    <p><cite>This is a citation</cite>
+                    </p><p>The <dfn>dfn element</dfn> indicates a definition.</p>
+                    <p>The
+                        <mark>mark element</mark>
+                        indicates a highlight
+                    </p>
+                    <p><code>This is what inline code looks like.</code></p>
+                    <p><samp>This is sample output from a computer program</samp></p>
+                    <p>The <var>variarble element</var>, such as <var>x</var> = <var>y</var></p>
+                </div>
+                <h2 class="pattern-heading">Preformatted Text</h2>
+        <pre>P R E F O R M A T T E D T E X T
+! " # $ % & ' ( ) * + , - . /
+0 1 2 3 4 5 6 7 8 9 : ; < = > ?
+@ A B C D E F G H I J K L M N O
+P Q R S T U V W X Y Z [ \ ] ^ _
+` a b c d e f g h i j k l m n o
+p q r s t u v w x y z { | } ~ </pre>
+                <h2 class="pattern-heading">HR</h2>
+                <hr>
+                <h2 class="pattern-heading">Unordered List</h2>
+                <ul>
+                    <li>This is a list item in an unordered list</li>
+                    <li>An unordered list is a list in which the sequence of items is not important. Sometimes, an unordered list is a bulleted list. And this is a long list item in an unordered list that can wrap onto a new line.</li>
+                    <li>
+                        Lists can be nested inside of each other
+                        <ul>
+                            <li>This is a nested list item</li>
+                            <li>This is another nested list item in an unordered list</li>
+                        </ul>
+                    </li>
+                    <li>This is the last list item</li>
+                </ul>
+                <h2 class="pattern-heading">Ordered List</h2>
+                <ol>
+                    <li>This is a list item in an ordered list</li>
+                    <li>An ordered list is a list in which the sequence of items is important. An ordered list does not necessarily contain sequence characters.</li>
+                    <li>
+                        Lists can be nested inside of each other
+                        <ol>
+                            <li>This is a nested list item</li>
+                            <li>This is another nested list item in an ordered list</li>
+                        </ol>
+                    </li>
+                    <li>This is the last list item</li>
+                </ol>
+                <h2 class="pattern-heading">Definition List</h2>
+                <dl>
+                    <dt>Definition List</dt>
+                    <dd>A number of connected items or names written or printed consecutively, typically one below the other.</dd>
+                    <dt>This is a term.</dt>
+                    <dd>This is the definition of that term, which both live in a <code>dl</code>.</dd>
+                    <dt>Here is another term.</dt>
+                    <dd>And it gets a definition too, which is this line.</dd>
+                    <dt>Here is term that shares a definition with the term below.</dt>
+                    <dd>And it gets a definition too, which is this line.</dd>
+                </dl>
+                <h2 class="pattern-heading">Text Fields</h2>
+                <div class="field-container">
+                    <label for="text">Text Input <abbr title="Required">*</abbr></label>
+                    <input id="text" type="text" placeholder="Text Input">
+                </div>
+                <div class="field-container">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Type your Password">
+                </div>
+                <div class="field-container">
+                    <label for="webaddress">Web Address</label>
+                    <input id="webaddress" type="url" placeholder="http://yoursite.com">
+                </div>
+                <div class="field-container">
+                    <label for="emailaddress">Email Address</label>
+                    <input id="emailaddress" type="email" placeholder="name@email.com">
+                </div>
+                <div class="field-container">
+                    <label for="search">Search</label> <input id="search" type="search" placeholder="Enter Search Term">
+                </div>
+                <div class="field-container">
+                    <label for="text">Number Input <abbr title="Required">*</abbr></label>
+                    <input id="text" type="number" placeholder="Enter a Number" pattern="[0-9]*">
+                </div>
+                <div class="field-container">
+                    <label for="textarea">Textarea</label>
+                    <textarea id="textarea" rows="8" cols="48" placeholder="Enter your message here"></textarea>
+                </div>
+                <div class="field-container">
+                    <label>Error Input</label> <input class="error" type="text" placeholder="Text Input">
+                    <label class="error" for="name">This is the error message</label>
+                </div>
+                <h2 class="pattern-heading">Flot Graph</h2>
+                <?php include( "_apps/example/example.php" ); ?>
+                <h2 class="pattern-heading">Slider</h2>
+                <label for="slider-style">Slider</label>
+                <input type="text" class="slider-style" id="slider-style" value="" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5" data-tooltip="show">
+                <h2 class="pattern-heading">Select Menu</h2>
+                <label for="select">Select</label> <select id="select">
+                    <optgroup label="Option Group">
+                        <option>Option One</option>
+                        <option>Option Two</option>
+                        <option>Option Three</option>
+                    </optgroup>
+                </select>
+                <h2 class="pattern-heading">Checkboxes</h2>
+                <ul class="none">
+                    <li>
+                        <label for="checkbox1"><input id="checkbox1" name="checkbox" type="checkbox" checked="checked"> Choice A</label>
+                    </li>
+                    <li><label for="checkbox2"><input id="checkbox2" name="checkbox" type="checkbox"> Choice B</label>
+                    </li>
+                    <li><label for="checkbox3"><input id="checkbox3" name="checkbox" type="checkbox"> Choice C</label>
+                    </li>
+                </ul>
+                <h2 class="pattern-heading">Radio Buttons</h2>
+                <ul class="none">
+                    <li>
+                        <label for="radio1"><input id="radio1" name="radio" type="radio" class="radio" checked="checked"> Option 1</label>
+                    </li>
+                    <li><label for="radio2"><input id="radio2" name="radio" type="radio" class="radio"> Option 2</label>
+                    </li>
+                    <li><label for="radio3"><input id="radio3" name="radio" type="radio" class="radio"> Option 3</label>
+                    </li>
+                </ul>
+                <h2 class="pattern-heading">Buttons</h2>
+                <a href="#" class="button">Button</a> <a href="#" class="button disabled">Disabled Button</a>
+                <h2 class="pattern-heading">Page Navigation</h2>
+                <?php page_nav(array(
+                    "?page=1" => "Page 1",
+                    "?page=2" => "Page 2",
+                    "?page=3" => "Page 3"
+                ), "Page 2"); ?>
+                <h2 class="pattern-heading">Table</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Table Heading 1</th>
+                        <th>Table Heading 2</th>
+                        <th>Table Heading 3</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Table Footer 1</th>
+                        <th>Table Footer 2</th>
+                        <th>Table Footer 3</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <tr>
+                        <td>Table Cell 1</td>
+                        <td>Table Cell 2</td>
+                        <td>Table Cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>Table Cell 1</td>
+                        <td>Table Cell 2</td>
+                        <td>Table Cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>Table Cell 1</td>
+                        <td>Table Cell 2</td>
+                        <td>Table Cell 3</td>
+                    </tr>
+                    <tr>
+                        <td>Table Cell 1</td>
+                        <td>Table Cell 2</td>
+                        <td>Table Cell 3</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h2 class="pattern-heading">Link Box</h2>
+                <div class="three-columns">
+                    <a href="#">
+                        <div class="feature-box link">
+                            <h3>Link Title</h3>
+                            <img src="http://placehold.it/600x300?text=link+image" alt="#">
+                        </div>
+                    </a>
+                </div>
+                <div class="three-columns">
+                    <a href="#">
+                        <div class="feature-box link">
+                            <h3>Link Title</h3>
+                            <img src="http://placehold.it/600x300?text=link+image" alt="#">
+                        </div>
+                    </a>
+                </div>
+                <div class="three-columns">
+                    <a href="#">
+                        <div class="feature-box link">
+                            <h3>Link Title</h3>
+                            <img src="http://placehold.it/600x300?text=link+image" alt="#">
+                        </div>
+                    </a>
+                </div>
+                <h2 class="pattern-heading">App Box</h2>
+                <div class="feature-box app">
+                    <h2>App Box</h2>
+                    <div class="full-width">
+                        <?php include( "_apps/example/example-2.php" ) ?>
+                    </div>
+                    <div class="three-columns">
+                        <label for="slider-1">Slider 1</label>
+                        <input type="text" name="slider1" class="slider-style" value="" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5" data-tooltip="show">
+                    </div>
+                    <div class="three-columns">
+                        <label for="slider-1">Slider 1</label>
+                        <input type="text" name="slider1" class="slider-style" value="" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5" data-tooltip="show">
+                    </div>
+                    <div class="three-columns">
+                        <label for="slider-1">Slider 1</label>
+                        <input type="text" name="slider1" class="slider-style" value="" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="5" data-tooltip="show">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+<div class="sub-footer">
+    <div class="wrapper footer">
+        <div class="container">
+            <div class="two-thirds-column clearfix">
+                <p>Your footer goes here</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
