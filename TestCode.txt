@@ -1,0 +1,6 @@
+A1	P ID="Pump"	B1	P ID="Puck"	
+A2	S ID='Pump pressure' F='0' T='12' V='9' S='0.5'	B2	S ID='Puck pressure' F='0' T='12' V='9' S='0.5'	
+A3	S ID='Flow Restrictor Resistance' F='0' T='12' V='8' S='0.1'	B3	S ID='Puck Resistance' F='0' T='12' V='10' S='0.1'	
+B4	S ID='Flow' F='0' T='12' V='1' S='0.1'	
+
+
