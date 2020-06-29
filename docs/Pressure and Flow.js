@@ -2,8 +2,6 @@ var AmLoaded = false,
 input = $('input')
 store = "PressureAndFlowSettings"
 var shotTimeout
-var flowWeight=""
-var shotWeight=""
 
 //initialise graph data variables
 var puckResistanceGraph=[0,0], puckPressureGraph=[0,0], pumpPressureGraph=[0,0],flowRestrictorGraph=[0,0],flowGraph=[0,0];
@@ -77,7 +75,6 @@ $(document).ready(function () {
 	$("#SlideFlow").slider({ tooltip: "always" }).on("slideStop", function (value) {_drops() });
 	
 	plot=$.plot($("#graph"), dataset, options);
-	console.log(dataset)
 	
 	_resize()
 	_display()
@@ -86,12 +83,27 @@ $(document).ready(function () {
 })
 
 function _resize() {
-var imageHeight = (Math.floor(document.getElementById("Machine_transparency").clientHeight)-1)+'px';
-var imageWidth = document.getElementById("Machine_transparency").clientWidth;
-document.getElementById("graph").style.height = imageHeight;
+	var imageHeight
+	if(window.innerHeight > window.innerWidth){
+		imageHeight = window.innerHeight-(Math.floor(document.getElementById("controls").clientHeight));
+	} else {
+		imageHeight = window.innerHeight;
+	}
+
+document.getElementById("graph").style.height = imageHeight+'px';
 plot.resize()
 plot.setupGrid()
 plot.draw()
+
+let puckLocation = document.getElementById("puck4").getBoundingClientRect()
+document.getElementById("rain").style.top = puckLocation.bottom+"px"
+document.getElementById("rain").style.left = puckLocation.left+puckLocation.width*.075+"px"
+document.getElementById("rain").style.width = puckLocation.width*.85+"px"
+
+document.getElementById("rain").style.height = imageHeight-puckLocation.bottom+"px"
+
+console.log(puckLocation)
+
 }
 
 
@@ -198,16 +210,26 @@ function _display() {
 
 		//set colour: puck
 	var puckColor=[255-(Puck_pressure/12)*50,255-(Puck_pressure/12)*255,255-(Puck_pressure/12)*255]
-	document.getElementById("puck-bg").style.backgroundColor= "rgb("+puckColor+")";
+	document.getElementById("puck1").style.fill= "rgb("+puckColor+")";
+	document.getElementById("puck2").style.fill= "rgb("+puckColor+")";
+	document.getElementById("puck3").style.fill= "rgb("+puckColor+")";
+	document.getElementById("puck4").style.fill= "rgb("+puckColor+")";
+
 		//set colour: pump
 	var pumpColor=[255-(Pump_pressure/12)*50,255-(Pump_pressure/12)*255,255-(Pump_pressure/12)*255]
-	document.getElementById("pump-bg").style.backgroundColor= "rgb("+pumpColor+")";
-		//set colour: restrictor gradient
-	document.getElementById("restrictor-bg").style.backgroundImage= "-webkit-linear-gradient(left, rgb("+puckColor+") 0%, rgb("+pumpColor+") 100%)";
+	document.getElementById("pump1").style.stroke= "rgb("+pumpColor+")";
+	document.getElementById("pump2").style.stroke= "rgb("+pumpColor+")";
 
-		//set restrictor size
-	var restrictorSize=100-(Flow_restrictor_resistance*10)
-	document.getElementById("restrictor-bg").style.height= restrictorSize+"%";
+		//set colour: restrictor gradient
+	document.getElementById("pumpstop").style.stopColor= "rgb("+pumpColor+")";
+	document.getElementById("puckstop").style.stopColor= "rgb("+puckColor+")";
+
+	//set restrictor size
+	var restrictorSize=12.12*(100-(Flow_restrictor_resistance*18))/100
+
+	document.getElementById("restrictangle").style.height= restrictorSize;
+	document.getElementById("restrictangle").style.y=176.73-restrictorSize/2;
+	
 }
 
 	
@@ -215,7 +237,7 @@ function _display() {
 function _drops() {
 	var Flow= parseFloat($('#SlideFlow').val())
 	var flowScaling=Flow/10
-	var droplets=150*flowScaling
+	var droplets=30*flowScaling
 	document.getElementById("rain").innerHTML=""
 
 	for (let r = 0; r < droplets; r++) {
@@ -257,9 +279,7 @@ function _flow() {
 	_display();
 }
 
-function _switch() {
-
-	if (document.getElementById('machinewrapper').style.visibility==='hidden'){
+function _switchDiagram() {
 		document.getElementById('machinewrapper').style.visibility='visible'
 		document.getElementById('graphwrapper').style.visibility='hidden'
 		document.getElementById('pumpcheckmark').style.visibility='hidden'
@@ -267,16 +287,15 @@ function _switch() {
 		document.getElementById('restrictorcheckmark').style.visibility='hidden'
 		document.getElementById('resistancecheckmark').style.visibility='hidden'
 		document.getElementById('flowcheckmark').style.visibility='hidden'
-		document.getElementById("shotweight").style.visibility='hidden'
 
 		document.getElementById('pumpcheckcontainer').style.pointerEvents='none'
 		document.getElementById('puckcheckcontainer').style.pointerEvents='none'
 		document.getElementById('restrictorcheckcontainer').style.pointerEvents='none'
 		document.getElementById('resistancecheckcontainer').style.pointerEvents='none'
 		document.getElementById('flowcheckcontainer').style.pointerEvents='none'
+}
 
-		document.getElementById('Graph_switch').innerHTML='Switch to Graph';
-	} else {
+function _switchGraph() {
 		document.getElementById('machinewrapper').style.visibility='hidden'
 		document.getElementById('graphwrapper').style.visibility='visible'
 		document.getElementById('pumpcheckmark').style.visibility='visible'
@@ -284,17 +303,12 @@ function _switch() {
 		document.getElementById('restrictorcheckmark').style.visibility='visible'
 		document.getElementById('resistancecheckmark').style.visibility='visible'
 		document.getElementById('flowcheckmark').style.visibility='visible'
-		document.getElementById("shotweight").style.visibility='visible'
 
 		document.getElementById('pumpcheckcontainer').style.pointerEvents='auto'
 		document.getElementById('puckcheckcontainer').style.pointerEvents='auto'
 		document.getElementById('restrictorcheckcontainer').style.pointerEvents='auto'
 		document.getElementById('resistancecheckcontainer').style.pointerEvents='auto'
 		document.getElementById('flowcheckcontainer').style.pointerEvents='auto'
-
-		document.getElementById('Graph_switch').innerHTML='Switch to Diagram';
-		//***call some function here: empty graph?***
-	}
 }
 
 function _puckSim() {
@@ -310,30 +324,44 @@ function _puckSim() {
 	for (var i=0; i < preinfuse; i+=0.5) {
 		puckResistanceData.push ([i, 0.1])
 	}
-		//ramp up step
-	puckResistanceData.push ([preinfuse, (res+baselineRes)*.7])
+		//ramp up steps
+		puckResistanceData.push ([preinfuse, (res+baselineRes)*0.05])
+		puckResistanceData.push ([preinfuse+0.5, (res+baselineRes)*.1])
+		puckResistanceData.push ([preinfuse+1, (res+baselineRes)*.3])
+		puckResistanceData.push ([preinfuse+1.5, (res+baselineRes)*.7])
 
 		//shot flowing steps
 	for (var i=0; i < (30-preinfuse); i+=0.5) {
-		puckResistanceData.push ([i+preinfuse+0.5, res+baselineRes])
+		puckResistanceData.push ([i+preinfuse+2, res+baselineRes])
 		var res=res*(0.7+Math.random()*.4)
 	}
-	return puckResistanceData
+	console.log(puckResistanceData)
+
+	var smoothPuckResistanceData = []
+	var smoothData = Smooth(puckResistanceData)
+	for (var i=0; i < 60; i+=0.1) {
+		smoothPuckResistanceData.push (smoothData(i))
+	}
+	
+
+	return smoothPuckResistanceData
 }
+
+
 
 function _runShot() {
 	//set switch to stop
+	document.getElementById('Simulate').innerHTML="Stop"
 	document.getElementById('Simulate').setAttribute('onclick', '_stopShot()')
 
 
 	clearTimeout(shotTimeout);
 	var currentTicks=0;
 	var puckResistanceGraphData=_puckSim();
-	shotWeight=0
-	flowWeight=0
 	
 
 	iterate();
+
 
 	function _nextData() {
 
@@ -343,10 +371,10 @@ function _runShot() {
 		_puckResistance();
 		
 		//read new values off sliders and create datapoints
-		var currentPuckPressure=[(currentTicks/2), parseFloat($('#SlidePuck_pressure').val())]
-		var currentPumpPressure=[(currentTicks/2), parseFloat($('#SlidePump_pressure').val())]
-		var currentFlowRestrictorResistance=[(currentTicks/2), parseFloat($('#SlideFlow_restrictor_resistance').val())]
-		var currentFlow=[(currentTicks/2), parseFloat($('#SlideFlow').val())]
+		var currentPuckPressure=[(currentTicks/20), parseFloat($('#SlidePuck_pressure').val())]
+		var currentPumpPressure=[(currentTicks/20), parseFloat($('#SlidePump_pressure').val())]
+		var currentFlowRestrictorResistance=[(currentTicks/20), parseFloat($('#SlideFlow_restrictor_resistance').val())]
+		var currentFlow=[(currentTicks/20), parseFloat($('#SlideFlow').val())]
 
 		//add values to graph
 		puckResistanceGraph.push(currentPuckResist)
@@ -355,15 +383,7 @@ function _runShot() {
 		flowRestrictorGraph.push(currentFlowRestrictorResistance)
 		flowGraph.push(currentFlow)
 
-		//update shot weight (/2 for 2 ticks/sec; assumes 20g coffee/headspace absorbs 40g water)
-		flowWeight+=(currentFlow[1]/2)
-		if (flowWeight<40) {
-			shotWeight=0
-		} else {
-			shotWeight=flowWeight-40
-		}
-		console.log(flowWeight)
-		document.getElementById("shotweight").innerHTML=shotWeight.toFixed(1)+"g"
+		
 
 		//increment timer
 		currentTicks+=1
@@ -385,11 +405,11 @@ function _runShot() {
 	}
 	
 	function iterate() {
-		if (currentTicks > 60) {
+		if (currentTicks > 599) {
 		_stopShot()
 		} else {
 		_drawDatapoint();
-		shotTimeout=setTimeout(iterate,500)
+		shotTimeout=setTimeout(iterate,45)
 		}
 	}
 }
@@ -397,6 +417,7 @@ function _runShot() {
 function _stopShot () {
 	clearTimeout(shotTimeout)
 	console.log(plot.getData())
+	document.getElementById('Simulate').innerHTML="Start"
 	document.getElementById('Simulate').setAttribute('onclick', '_runShot()')
 	oldpuckResistanceGraph.push ([0,null])
 	oldpuckResistanceGraph.push.apply (oldpuckResistanceGraph, puckResistanceGraph)
@@ -435,6 +456,8 @@ function _clearGraph() {
 	puckResistanceGraph=[0,0], puckPressureGraph=[], pumpPressureGraph=[], flowRestrictorGraph=[],flowGraph=[];
 	oldpuckResistanceGraph=[], oldpuckPressureGraph=[], oldpumpPressureGraph=[], oldflowRestrictorGraph=[], oldflowGraph=[];
 
+
+	document.getElementById('Simulate').innerHTML="Start"
 	document.getElementById('Simulate').setAttribute('onclick', '_runShot()');
 	var temp=plot.getData();
 	for (i=0; i<temp.length; i++){
