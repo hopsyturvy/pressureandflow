@@ -48,8 +48,9 @@ html {
 
 /* line 14, ../../../_sass/layout/_base.scss */
 html, body {
-  font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-weight: normal;
+  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size: 100%;
   line-height: 1.4;
   color: #00263B;
@@ -182,7 +183,9 @@ button,
 input,
 select,
 textarea {
-  font-family: sans-serif;
+  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================================================
@@ -538,7 +541,9 @@ h4, h5, h6 {
 p, li, ol, dl {
   color: #00263B;
   font-size: 1.00266rem;
-  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* line 35, ../../../_sass/layout/_typography.scss */
@@ -761,8 +766,9 @@ select {
   padding: 0.4375rem 0.375rem;
   outline: none;
   font-size: 1.375rem;
-  font-family: Helvetica, Arial, Verdana, sans-serif;
-  font-weight: normal;
+  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: #00263B;
   margin: 0 0 0.9625rem;
   width: 100%;
@@ -911,7 +917,7 @@ td {
   text-align: left;
 }
 
-/* line 1, ../../../_sass/elements/_buttons.scss */
+/* line 1, ../../../_sass/elements/_buttons.scss 
 a.button, .page-nav a,
 div.button,
 button,
@@ -919,7 +925,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
   background: #005599;
-  /* Old browsers */
+  /* Old browsers 
   border: 2px solid #005599;
   color: #f9f9f9;
   display: inline-block;
@@ -928,7 +934,9 @@ input[type="button"] {
   cursor: pointer;
   line-height: 1.4;
   padding: 0.4375rem 0.625rem 0.375rem;
-  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -938,7 +946,9 @@ input[type="button"] {
   transition: all 0.2s ease-in-out;
 }
 
-/* line 22, ../../../_sass/elements/_buttons.scss */
+
+
+/* line 22, ../../../_sass/elements/_buttons.scss 
 a.button:hover, .page-nav a:hover,
 div.button:hover,
 button:hover,
@@ -954,7 +964,7 @@ input[type="button"]:hover {
   transition: all 0.2s ease-in-out;
 }
 
-/* line 34, ../../../_sass/elements/_buttons.scss */
+/* line 34, ../../../_sass/elements/_buttons.scss 
 a.button:active, .page-nav a:active,
 div.button:active,
 button:active,
@@ -969,7 +979,7 @@ input[type="button"]:active {
   transition: all 0.2s ease-in-out;
 }
 
-/* line 45, ../../../_sass/elements/_buttons.scss */
+/* line 45, ../../../_sass/elements/_buttons.scss 
 a.button.full-width, .page-nav a.full-width,
 div.button.full-width,
 button.full-width,
@@ -982,7 +992,7 @@ input[type="button"].full-width {
   text-align: center;
 }
 
-/* line 57, ../../../_sass/elements/_buttons.scss */
+/* line 57, ../../../_sass/elements/_buttons.scss 
 a.button.disabled, .page-nav a.disabled, .page-nav a.current,
 div.button.disabled,
 button.disabled,
@@ -1004,7 +1014,7 @@ input::-moz-focus-inner {
 
 /* line 2, ../../../_sass/layout/_layout.scss */
 .wrapper {
-  padding: 1.925rem 1.925rem 0 1.925rem;
+
 }
 
 /* line 6, ../../../_sass/layout/_layout.scss */
@@ -1042,12 +1052,12 @@ input::-moz-focus-inner {
 
 /* line 37, ../../../_sass/layout/_layout.scss */
 .full-width {
-  margin-bottom: 1.925rem;
+
 }
 
 /* line 41, ../../../_sass/layout/_layout.scss */
 .feature-box {
-  margin-bottom: 1.925rem;
+
 }
 /* line 43, ../../../_sass/layout/_layout.scss */
 .feature-box h3 {
@@ -1059,17 +1069,22 @@ input::-moz-focus-inner {
 /* line 49, ../../../_sass/layout/_layout.scss */
 .feature-box.app {
   background-color: #edf2f4;
-  padding-bottom: 0.9625rem;
-  border: 2px solid #005599;
 }
 
 /* line 57, ../../../_sass/layout/_layout.scss */
 .app .row {
-  margin-bottom: 0.9625rem;
-  padding-left: 0.9625rem;
-  padding-right: 0.9625rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0;
   font-size: 1.00266rem;
 }
+
+.fullrow {
+  width: 100%;
+  font-size: 1.00266rem;
+
+}
+
 /* line 62, ../../../_sass/layout/_layout.scss */
 .app .row .full-width {
   margin-bottom: 0;
@@ -1084,7 +1099,7 @@ input::-moz-focus-inner {
 }
 /* line 71, ../../../_sass/layout/_layout.scss */
 .app .row label, .app .row span {
-  font-size: 1.00266rem;
+  font-size: 0.85rem;
 }
 /* line 74, ../../../_sass/layout/_layout.scss */
 .app .row.divider {
@@ -1254,14 +1269,12 @@ p.equation {
 
   /* line 207, ../../../_sass/layout/_layout.scss */
   .full-width {
-    margin-bottom: 1.925rem;
+  
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     float: left;
-    padding-left: 0.9625rem;
-    padding-right: 0.9625rem;
   }
 
   /* line 212, ../../../_sass/layout/_layout.scss */
@@ -1406,8 +1419,7 @@ p.equation {
 }
 /* line 1, ../../../_sass/layout/_flot.scss */
 .flot-graph {
-  margin-left: 0.9625rem;
-  margin-right: 0.9625rem;
+
   width: 96%;
   height: 340px;
 }
@@ -1490,6 +1502,12 @@ input.hidden-form {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  width: 100%;
+  height:100%;
+  position: relative;
 }
 
 /* line 54, ../../../_sass/elements/_helpers.scss */
@@ -1773,7 +1791,7 @@ input.hidden-form {
  */
 /* line 9, ../../../_sass/_slider/_slider.scss */
 .slider {
-  margin-top: 0.9625rem;
+  margin-top: 20px;
   display: inline-block;
   vertical-align: middle;
   position: relative;
@@ -1787,7 +1805,7 @@ input.hidden-form {
 
 /* line 21, ../../../_sass/_slider/_slider.scss */
 .slider.slider-horizontal .slider-track {
-  height: 10px;
+  height: 6px;
   width: 100%;
   margin-top: -5px;
   top: 50%;
@@ -1803,7 +1821,7 @@ input.hidden-form {
 
 /* line 35, ../../../_sass/_slider/_slider.scss */
 .slider.slider-horizontal .slider-handle {
-  margin-left: -10px;
+  margin-left: 0px;
   margin-top: -5px;
 }
 
@@ -1870,15 +1888,23 @@ input.hidden-form {
   bottom: 0.875rem;
   z-index: 1030;
   display: block;
-  font-size: 1.00266rem;
+  font-size: 0.85rem;
   line-height: 1.4;
 }
 
 /* line 98, ../../../_sass/_slider/_slider.scss */
 .tooltip.top {
-  padding: 5px 0;
-  margin-top: -8px;
+  padding: 1px 0;
+  width: 40px;
+  margin-bottom: 4px;
+  text-align: center;
+  color:white;
+  border-radius: 2px;
+
+  background-color: #d35d6d;
 }
+
+
 
 /* line 103, ../../../_sass/_slider/_slider.scss */
 .tooltip-arrow {
@@ -1902,28 +1928,26 @@ input.hidden-form {
 .slider-track {
   position: absolute;
   cursor: pointer;
-  background-color: #f6f6fe;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  border: 2px solid #005599;
+  background-color: #d2d4d3;
+  border-radius: 1px;
 }
 
 /* line 129, ../../../_sass/_slider/_slider.scss */
 .slider-selection {
   position: absolute;
-  background-color: #005599;
+  background-color: #d35d6d;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  border-radius: 1px 0 0 1px;
 }
 
 /* line 137, ../../../_sass/_slider/_slider.scss */
 .slider-handle {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #005599;
+  width: 2px;
+  height: 11px;
+  background-color: #d35d6d;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -1932,9 +1956,7 @@ input.hidden-form {
 
 /* line 148, ../../../_sass/_slider/_slider.scss */
 .slider-handle.round {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+
 }
 
 /* line 154, ../../../_sass/_slider/_slider.scss */
@@ -2028,12 +2050,16 @@ input.hidden-form {
 
   /* line 67, ../../../_sass/_print.scss */
   html, body, p, ul, ol, dl, li, input {
-    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* line 70, ../../../_sass/_print.scss */
   h1, h2, h3, h4, h5, h6 {
-    font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif !important;
+    font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* line 74, ../../../_sass/_print.scss */
@@ -2092,3 +2118,4 @@ input.hidden-form {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
