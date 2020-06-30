@@ -1,6 +1,4 @@
-var AmLoaded = false,
-input = $('input')
-store = "PressureAndFlowSettings"
+
 var shotTimeout
 
 //initialise graph data variables
@@ -19,7 +17,30 @@ var oldpumpPressureDataset={color: "#f1bec9", label: 'oldPump pressure', yaxis:1
 var oldflowRestrictorDataset={color: "#f0e5ae", label: 'oldRestrictor resistance', yaxis:2, data:oldpuckResistanceGraph}
 var oldflowDataset={color: "#b3d7f4", label: 'oldFlow', yaxis:3, data:oldpuckResistanceGraph}
 
-//initialise graph
+var plot
+
+
+jQuery(document).ready(function () {
+
+
+
+
+	
+	_drops()
+		//check for changes to slider and call calculator functions
+
+	jQuery("#SlidePump_pressure").slider({tooltip: "always"}).on("slide", function () {_pumpPressure()});
+	jQuery("#SlidePuck_pressure").slider({tooltip: "always"}).on("slide", function (value) {_puckPressure()});
+	jQuery("#SlideFlow_restrictor_resistance").slider({tooltip: "always"}).on("slide", function (value) {_restrictorResistance()});
+	jQuery("#SlidePuck_resistance").slider({tooltip: "always"}).on("slide", function (value) {_puckResistance()});
+
+	jQuery("#SlidePump_pressure").slider({tooltip: "always"}).on("slideStop", function () {_pumpPressure()});
+	jQuery("#SlidePuck_pressure").slider({tooltip: "always"}).on("slideStop", function (value) {_puckPressure()});
+	jQuery("#SlideFlow_restrictor_resistance").slider({tooltip: "always"}).on("slideStop", function (value) {_restrictorResistance()});
+	jQuery("#SlidePuck_resistance").slider({tooltip: "always"}).on("slideStop", function (value) {_puckResistance()});
+	jQuery("#SlideFlow").slider({tooltip: "always"}).on("slideStop", function (value) {_flow()});
+	
+	//initialise graph
 var dataset = [
 	oldpuckResistanceDataset,
 	oldpuckPressureDataset,
@@ -32,7 +53,7 @@ var dataset = [
 	flowRestrictorDataset,
 	flowDataset,
 ];
-var options = {
+	var options = {
 	yaxes: [{
 			min: 0, max: 10, show:true, labelWidth: 0, labelHeight: 0, reserveSpace: null, tickFormatter: function(){return ""}
 		}, {
@@ -49,36 +70,11 @@ var options = {
 		hoverable: true
 	}
 }
-var plot
-
-
-$(document).ready(function () {
-
-		//check for changes to slider and call calculator functions
-
-	$("#SlidePump_pressure").slider({tooltip: "always"}).on("slide", function () {_pumpPressure()});
-	$("#SlidePuck_pressure").slider({tooltip: "always"}).on("slide", function (value) {_puckPressure()});
-	$("#SlideFlow_restrictor_resistance").slider({tooltip: "always"}).on("slide", function (value) {_restrictorResistance()});
-	$("#SlidePuck_resistance").slider({tooltip: "always"}).on("slide", function (value) {_puckResistance()});
-	$("#SlideFlow").slider({ tooltip: "always" }).on("slide", function (value) { _flow() });
-
-	$("#SlidePump_pressure").slider({tooltip: "always"}).on("slideStop", function () {_pumpPressure()});
-	$("#SlidePuck_pressure").slider({tooltip: "always"}).on("slideStop", function (value) {_puckPressure()});
-	$("#SlideFlow_restrictor_resistance").slider({tooltip: "always"}).on("slideStop", function (value) {_restrictorResistance()});
-	$("#SlidePuck_resistance").slider({tooltip: "always"}).on("slideStop", function (value) {_puckResistance()});
-	$("#SlideFlow").slider({ tooltip: "always" }).on("slideStop", function (value) {_flow() });
-
-	$("#SlidePump_pressure").slider({tooltip: "always"}).on("slideStop", function () {_drops()});
-	$("#SlidePuck_pressure").slider({tooltip: "always"}).on("slideStop", function (value) {_drops()});
-	$("#SlideFlow_restrictor_resistance").slider({tooltip: "always"}).on("slideStop", function (value) {_drops()});
-	$("#SlidePuck_resistance").slider({tooltip: "always"}).on("slideStop", function (value) {_drops()});
-	$("#SlideFlow").slider({ tooltip: "always" }).on("slideStop", function (value) {_drops() });
-	
-	plot=$.plot($("#graph"), dataset, options);
+	plot=jQuery.plot(jQuery("#graph"), dataset, options);
 	
 	_resize()
 	_display()
-	_drops()
+	
 	
 })
 
@@ -90,30 +86,27 @@ function _resize() {
 		imageHeight = window.innerHeight;
 	}
 
-document.getElementById("graph").style.height = imageHeight+'px';
-plot.resize()
-plot.setupGrid()
-plot.draw()
+	document.getElementById("graph").style.height = imageHeight+'px';
+	plot.resize()
+	plot.setupGrid()
+	plot.draw()
 
-let puckLocation = document.getElementById("puck4").getBoundingClientRect()
-document.getElementById("rain").style.top = puckLocation.bottom+"px"
-document.getElementById("rain").style.left = puckLocation.left+puckLocation.width*.075+"px"
-document.getElementById("rain").style.width = puckLocation.width*.85+"px"
-
-document.getElementById("rain").style.height = imageHeight-puckLocation.bottom+"px"
-
-console.log(puckLocation)
-
+	let puckLocation = document.getElementById("puck4").getBoundingClientRect()
+	console.log(puckLocation)
+	document.getElementById("rain").style.top = puckLocation.bottom+"px"
+	document.getElementById("rain").style.left = puckLocation.left+puckLocation.width*.075+"px"
+	document.getElementById("rain").style.width = puckLocation.width*.85+"px"
+	document.getElementById("rain").style.height = imageHeight-puckLocation.bottom+"px"
 }
 
 
 function _pumpPressure() {
 		//read values
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_restrictor_resistance= parseFloat($('#SlideFlow_restrictor_resistance').val())
-	var Puck_resistance= parseFloat($('#SlidePuck_resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
+	var Pump_pressure= parseFloat(jQuery('#SlidePump_pressure').val())
+	var Puck_pressure= parseFloat(jQuery('#SlidePuck_pressure').val())
+	var Flow_restrictor_resistance= parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())
+	var Puck_resistance= parseFloat(jQuery('#SlidePuck_resistance').val())
+	var Flow= parseFloat(jQuery('#SlideFlow').val())
 	var totalResistance= Puck_resistance+Flow_restrictor_resistance
 
 		//run calculation
@@ -121,20 +114,24 @@ function _pumpPressure() {
 	Puck_pressure=Puck_resistance*Flow
 
 		//set slider values
-	$('#SlidePuck_pressure').slider('setValue', Puck_pressure);
-	$('#SlideFlow').slider('setValue', Flow);
+	jQuery('#SlidePuck_pressure').slider('setValue', Puck_pressure);
+	jQuery('#SlideFlow').slider('setValue', Flow);
 
 		//catch overflow
-	if  (Flow > 15) {_flow()} else {_display()}
+	if  (Flow > 15) {
+		_flow()
+	} else {
+		_display();
+	}
 }
 
 function _puckPressure() {
 		//read values
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_restrictor_resistance= parseFloat($('#SlideFlow_restrictor_resistance').val())
-	var Puck_resistance= parseFloat($('#SlidePuck_resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
+	var Pump_pressure= parseFloat(jQuery('#SlidePump_pressure').val())
+	var Puck_pressure= parseFloat(jQuery('#SlidePuck_pressure').val())
+	var Flow_restrictor_resistance= parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())
+	var Puck_resistance= parseFloat(jQuery('#SlidePuck_resistance').val())
+	var Flow= parseFloat(jQuery('#SlideFlow').val())
 
 		//run calculation
 	var totalResistance=Puck_resistance+Flow_restrictor_resistance
@@ -144,27 +141,31 @@ function _puckPressure() {
 		//catch excess pump pressure
 	if (Pump_pressure > 12) {
 		Pump_pressure=12;
-		$('#SlidePump_pressure').slider('setValue', Pump_pressure);
+		jQuery('#SlidePump_pressure').slider('setValue', Pump_pressure);
 		_pumpPressure();
 	} else {
 
 		//set slider values
-	$('#SlidePump_pressure').slider('setValue', Pump_pressure);
-	$('#SlideFlow').slider('setValue', Flow);
+	jQuery('#SlidePump_pressure').slider('setValue', Pump_pressure);
+	jQuery('#SlideFlow').slider('setValue', Flow);
 	}
 
 		//catch overflow
-	if  (Flow > 15) {_flow()} else {_display()}
+	if  (Flow > 15) {
+		_flow()
+	} else {
+		_display();
+	}
 }
 
 
 function _restrictorResistance() {
 		//read values
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_restrictor_resistance= parseFloat($('#SlideFlow_restrictor_resistance').val())
-	var Puck_resistance= parseFloat($('#SlidePuck_resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
+	var Pump_pressure= parseFloat(jQuery('#SlidePump_pressure').val())
+	var Puck_pressure= parseFloat(jQuery('#SlidePuck_pressure').val())
+	var Flow_restrictor_resistance= parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())
+	var Puck_resistance= parseFloat(jQuery('#SlidePuck_resistance').val())
+	var Flow= parseFloat(jQuery('#SlideFlow').val())
 
 		//run calculation
 	var totalResistance=Puck_resistance+Flow_restrictor_resistance
@@ -172,20 +173,24 @@ function _restrictorResistance() {
 	Puck_pressure=Puck_resistance*Flow
 
 		//set slider values
-	$('#SlidePuck_pressure').slider('setValue', Puck_pressure);
-	$('#SlideFlow').slider('setValue', Flow);
+	jQuery('#SlidePuck_pressure').slider('setValue', Puck_pressure);
+	jQuery('#SlideFlow').slider('setValue', Flow);
 
 		//catch overflow
-	if  (Flow > 15) {_flow()} else {_display()}
+	if  (Flow > 15) {
+		_flow()
+	} else {
+		_display();
+	}
 }
 
 function _puckResistance() {
 		//read values
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_restrictor_resistance= parseFloat($('#SlideFlow_restrictor_resistance').val())
-	var Puck_resistance= parseFloat($('#SlidePuck_resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
+	var Pump_pressure= parseFloat(jQuery('#SlidePump_pressure').val())
+	var Puck_pressure= parseFloat(jQuery('#SlidePuck_pressure').val())
+	var Flow_restrictor_resistance= parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())
+	var Puck_resistance= parseFloat(jQuery('#SlidePuck_resistance').val())
+	var Flow= parseFloat(jQuery('#SlideFlow').val())
 
 		//run calculation
 	var totalResistance=Puck_resistance+Flow_restrictor_resistance
@@ -193,20 +198,24 @@ function _puckResistance() {
 	Puck_pressure=Puck_resistance*Flow
 
 		//set slider values
-	$('#SlidePuck_pressure').slider('setValue', Puck_pressure);
-	$('#SlideFlow').slider('setValue', Flow);
+	jQuery('#SlidePuck_pressure').slider('setValue', Puck_pressure);
+	jQuery('#SlideFlow').slider('setValue', Flow);
 
 		//catch overflow
-	if  (Flow > 15) {_flow()} else {_display()}
+	if  (Flow > 15) {
+		_flow()
+	} else {
+		_display();
+	}
 }
 
 function _display() {
 		//read values
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_restrictor_resistance= parseFloat($('#SlideFlow_restrictor_resistance').val())
-	var Puck_resistance= parseFloat($('#SlidePuck_resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
+	var Pump_pressure= parseFloat(jQuery('#SlidePump_pressure').val())
+	var Puck_pressure= parseFloat(jQuery('#SlidePuck_pressure').val())
+	var Flow_restrictor_resistance= parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())
+	var Puck_resistance= parseFloat(jQuery('#SlidePuck_resistance').val())
+	var Flow= parseFloat(jQuery('#SlideFlow').val())
 
 		//set colour: puck
 	var puckColor=[255-(Puck_pressure/12)*50,255-(Puck_pressure/12)*255,255-(Puck_pressure/12)*255]
@@ -230,14 +239,28 @@ function _display() {
 	document.getElementById("restrictangle").style.height= restrictorSize;
 	document.getElementById("restrictangle").style.y=176.73-restrictorSize/2;
 	
+	_dropNumber();
 }
 
+function _dropNumber() {
 	
+	let flowScaling= Math.floor(10*parseFloat(jQuery('#SlideFlow').val()));
+	if (flowScaling > 99) {
+		flowScaling = 99
+	}
+
+	for (let r = 0; r < flowScaling; r++) {
+		document.getElementById(["dropPath"+r]).style.display="inline"
+	}
+
+	for (let r = flowScaling; r < 100; r++) {
+		document.getElementById(["dropPath"+r]).style.display="none"
+	}
+	
+}	
 
 function _drops() {
-	var Flow= parseFloat($('#SlideFlow').val())
-	var flowScaling=Flow/10
-	var droplets=30*flowScaling
+	var droplets=100
 	document.getElementById("rain").innerHTML=""
 
 	for (let r = 0; r < droplets; r++) {
@@ -247,6 +270,7 @@ function _drops() {
 		var animationDuration=(Math.random() + 0.7)
 		var animationDelay=Math.random() * 2 - 1
 		var pathScale=Math.random()/2+.3
+
 
 		document.getElementById("rain").innerHTML+=
 		'<svg class=\"rain__drop\" id=\"drop'+r+'\" preserveAspectRatio=\"xMinYMin\" viewBox=\"0 0 5 50\"><path id=\"dropPath'+r+'\"stroke=\"none\" d=\"M 2.5,0 C 2.6949458,3.5392017 3.344765,20.524571 4.4494577,30.9559 5.7551357,42.666753 4.5915685,50 2.5,50 0.40843152,50 -0.75513565,42.666753 0.55054234,30.9559 1.655235,20.524571 2.3050542,3.5392017 2.5,0 Z\"><\/path><\/svg>'
@@ -261,11 +285,11 @@ function _drops() {
 }
 
 function _flow() {
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_restrictor_resistance= parseFloat($('#SlideFlow_restrictor_resistance').val())
-	var Puck_resistance= parseFloat($('#SlidePuck_resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
+	var Pump_pressure= parseFloat(jQuery('#SlidePump_pressure').val())
+	var Puck_pressure= parseFloat(jQuery('#SlidePuck_pressure').val())
+	var Flow_restrictor_resistance= parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())
+	var Puck_resistance= parseFloat(jQuery('#SlidePuck_resistance').val())
+	var Flow= parseFloat(jQuery('#SlideFlow').val())
 
 		//since max slider value of flow is 15, this calculates pressure at this flow rate
 	var totalResistance=Puck_resistance+Flow_restrictor_resistance
@@ -273,8 +297,8 @@ function _flow() {
 	Puck_pressure = Puck_resistance*Flow
 
 		//adjust pressure values to compensate
-	$('#SlidePump_pressure').slider('setValue', Pump_pressure);
-	$('#SlidePuck_pressure').slider('setValue', Puck_pressure);
+	jQuery('#SlidePump_pressure').slider('setValue', Pump_pressure);
+	jQuery('#SlidePuck_pressure').slider('setValue', Puck_pressure);
 
 	_display();
 }
@@ -335,7 +359,7 @@ function _puckSim() {
 		puckResistanceData.push ([i+preinfuse+2, res+baselineRes])
 		var res=res*(0.7+Math.random()*.4)
 	}
-	console.log(puckResistanceData)
+
 
 	var smoothPuckResistanceData = []
 	var smoothData = Smooth(puckResistanceData)
@@ -350,6 +374,9 @@ function _puckSim() {
 
 
 function _runShot() {
+
+
+	
 	//set switch to stop
 	document.getElementById('Simulate').innerHTML="Stop"
 	document.getElementById('Simulate').setAttribute('onclick', '_stopShot()')
@@ -367,14 +394,14 @@ function _runShot() {
 
 		//update resistance slider and recalculate all values
 		var currentPuckResist=puckResistanceGraphData[currentTicks];
-		$('#SlidePuck_resistance').slider('setValue', parseFloat(currentPuckResist[1]));
+		jQuery('#SlidePuck_resistance').slider('setValue', parseFloat(currentPuckResist[1]));
 		_puckResistance();
 		
 		//read new values off sliders and create datapoints
-		var currentPuckPressure=[(currentTicks/20), parseFloat($('#SlidePuck_pressure').val())]
-		var currentPumpPressure=[(currentTicks/20), parseFloat($('#SlidePump_pressure').val())]
-		var currentFlowRestrictorResistance=[(currentTicks/20), parseFloat($('#SlideFlow_restrictor_resistance').val())]
-		var currentFlow=[(currentTicks/20), parseFloat($('#SlideFlow').val())]
+		var currentPuckPressure=[(currentTicks/20), parseFloat(jQuery('#SlidePuck_pressure').val())]
+		var currentPumpPressure=[(currentTicks/20), parseFloat(jQuery('#SlidePump_pressure').val())]
+		var currentFlowRestrictorResistance=[(currentTicks/20), parseFloat(jQuery('#SlideFlow_restrictor_resistance').val())]
+		var currentFlow=[(currentTicks/20), parseFloat(jQuery('#SlideFlow').val())]
 
 		//add values to graph
 		puckResistanceGraph.push(currentPuckResist)
@@ -416,7 +443,7 @@ function _runShot() {
 
 function _stopShot () {
 	clearTimeout(shotTimeout)
-	console.log(plot.getData())
+
 	document.getElementById('Simulate').innerHTML="Start"
 	document.getElementById('Simulate').setAttribute('onclick', '_runShot()')
 	oldpuckResistanceGraph.push ([0,null])
@@ -472,48 +499,7 @@ function _toggleSeries (seriesIdx, seriesIdy) {
 	var someData = plot.getData();
 	someData[seriesIdx].lines.show = !someData[seriesIdx].lines.show;
 	someData[seriesIdy].lines.show = !someData[seriesIdy].lines.show;
-	console.log(someData[seriesIdy])
+
 	plot.setData(someData);
 	plot.draw();
-}
-
-
-
-
-function calcIt() {
-	if (!AmLoaded) return
-	//This stores all your settings in localStorage
-	var ThemAll = setupCheckRadio(input)
-	if (localStorage) {localStorage.setItem(store, ThemAll)}
-	//Basic reading of all inputs (Sliders, Textboxes, Radio/Check is here for your convenience)
-	var Pump_pressure= parseFloat($('#SlidePump_pressure').val())
-	var Puck_pressure= parseFloat($('#SlidePuck_pressure').val())
-	var Flow_Restrictor_Resistance= parseFloat($('#SlideFlow_Restrictor_Resistance').val())
-	var Puck_Resistance= parseFloat($('#SlidePuck_Resistance').val())
-	var Flow= parseFloat($('#SlideFlow').val())
-	var PPts1=[]; PPts1.push([0,0]); PPts1.push([100,100])
-	var options1= {grid: { hoverable: true, mouseActiveRadius: 4,backgroundColor:"#fdfdfd"}, xaxis: {min: 0, max: 100, axisLabel: "X",}, yaxis: {min: 0, max: 100, axisLabel: "Y",},}
-	$.plot($("#Puck"),[{ data:PPts1}], options1)
-	
-		
-	//This only draws into the first canvas if you happen to have more than one
-	//It's only showing how the basics work to get you started
-	var theCanvas = document.getElementById('Pump');
-	$("#Pump").clearCanvas()
-	var yheight = theCanvas.height
-	var xwidth=theCanvas.width
-	var r = yheight/2
-	var xc = xwidth/2
-	var yc = yheight/2
-	$("#Pump").drawRect({
-		fillStyle: "cyan",
-		x: 0, y: 0,
-		width: xwidth, height: yheight,fromCenter:false
-	})
-	$("#Pump").drawEllipse({
-		fillStyle: "green",
-		x: xc, y: yc,
-		width: r, height: r
-	})
-		
 }
