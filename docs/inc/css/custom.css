@@ -219,11 +219,11 @@ cursor: not-allowed;
   position: absolute;
   top: 50%;
   right: 0;
-  height: 16px;
-  width: 16px;
+  height: 14px;
+  width: 14px;
   margin-top: -8px;
   visibility: hidden;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 
@@ -244,10 +244,10 @@ cursor: not-allowed;
 
 /* Style the checkmark/indicator */
 .checkcontainer .checkmark:after {
-  left: 6px;
+  left: 5px;
   top: 2px;
-  width: 6px;
-  height: 10px;
+  width: 5px;
+  height: 9px;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -256,7 +256,7 @@ cursor: not-allowed;
 /* tick colour */
 .checkcontainer .checkmark:after {
   border: solid white;
-  border-width: 0 3px 3px 0;
+  border-width: 0 2.5px 2.5px 0;
 }
 
 /* unselected colour */
@@ -266,7 +266,7 @@ background-color: #ccc;
 
 /* selected colour */
 .checkcontainer input:checked ~ #pumpcheckmark {
-  background-color: #e02d4f ;
+  background-color: #ca4363 ;
 }
 
 /* hover color */
@@ -276,7 +276,7 @@ background-color: #ccc;
 
 /* selected colour */
 .checkcontainer input:checked ~ #puckcheckmark {
-  background-color: #e55acb ;
+  background-color: #bb6cae ;
 }
 
 /* hover color */
@@ -286,7 +286,7 @@ background-color: #ccc;
 
 /* selected colour */
 .checkcontainer input:checked ~ #restrictorcheckmark {
-  background-color: #ffd93b ;
+  background-color: #ebbd53 ;
 }
 
 /* hover color */
@@ -296,7 +296,7 @@ background-color: #ccc;
 
 /* selected colour */
 .checkcontainer input:checked ~ #resistancecheckmark {
-  background-color: #2dc48a ;
+  background-color: #6cbea1 ;
 }
 
 /* hover color */
@@ -307,7 +307,7 @@ background-color: #ccc;
 
 /* selected colour */
 .checkcontainer input:checked ~ #flowcheckmark {
-  background-color: #41aad8 ;
+  background-color: #65a3ce ;
 }
 
 /* hover color */
@@ -343,11 +343,37 @@ background-color: #ccc;
     flex-direction: row;
     display: flex;
     justify-content: flex-end;
+    max-height: 600px;
+    border: 1px solid #6c6c6c;
 
   }
   .row.clearfix {
-    min-width: 400px;
-    flex-grow: 1;
+    min-width: 280px;
+    width:50%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    margin: 0
+  }
+
+  .full-column {
+    border-right: 1px solid #6c6c6c;
+  }
+
+  .one-column {
+    height: 100%;
+    display: flex;
+    flex-flow: wrap;
+    align-content: center;
+  }
+
+  .fullwidth {
+    width:100%
+  }
+
+  body {
+    display: flex;
+    align-items: center;
   }
 
 }
@@ -456,7 +482,7 @@ font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Gran
     border-radius: 0;
     background-color: transparent;
     color: #00263B;
-    border: 1px solid #a2a4a3;
+    border: 1px solid #6c6c6c;
     border-top-width: 1px;
     border-bottom-width: 1px;
     border-right-width: 1px;
@@ -477,7 +503,7 @@ font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Gran
 }
 
 :checked + .buttonbar-button {
-  background-color: #a2a4a3;
+  background-color: #6c6c6c;
   color: #fff;
 }
 
@@ -500,18 +526,18 @@ font-family: -apple-system, 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Gran
 
 :active + .buttonbar-button {
   background-color: #d2d4d3;
-  border: 0 solid #a2a4a3;
-  border-top: 1px solid #a2a4a3;
-  border-bottom: 1px solid #a2a4a3;
-  border-right: 1px solid #a2a4a3;
-  font-size: 0.85rem;
+  border: 0 solid #6c6c6c;
+  border-top: 1px solid #6c6c6c;
+  border-bottom: 1px solid #6c6c6c;
+  border-right: 1px solid #6c6c6c;
   width: 100%;
   transition: none;
+  color: #00263B;
 }
 
 button {
 background-color: transparent;
-border: 1px solid #a2a4a3;
+border: 1px solid #6c6c6c;
 color: #00263B;
 position: relative;
     display: inline-block;
@@ -558,14 +584,14 @@ button:focus {
 
 button:active {
   background-color: #d2d4d3;
-  border: 1px solid #a2a4a3;
+  border: 1px solid #6c6c6c;
   color: #00263B;
   opacity: 1;
 }
 
 button:hover {
   transition: 0;
-  border: 1px solid #a2a4a3;
+  border: 1px solid #6c6c6c;
 }
 
 .buttonbar, button {
