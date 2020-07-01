@@ -7,6 +7,15 @@
     <title>Pressure and Flow</title>
     <link rel="stylesheet" href="inc/css/styles.css">
     <link rel="stylesheet" href="inc/css/custom.css">
+    <script src="inc/js/jquery-2.2.0.min.js"></script>
+    <script src="inc/js/Smooth-0.1.7.js"></script>
+    <script src="inc/js/bootstrap-slider.js"></script>
+    <script src="inc/js/jcanvas.min.js"></script>
+    <script src="inc/js/jquery.flot.min.js"></script>
+    <script src="inc/js/jquery.flot.axislabels.js"></script>
+    <script src="inc/js/jquery.flot.dashes.js"></script>
+    <script src="inc/js/jquery.flot.curvedlines.js"></script>
+    <script src="Pressure and Flow.js"></script>
 </head>
 
 <body onresize="_resize()">
@@ -91,21 +100,25 @@
         </div>
 
         <div class="row clearfix" id="controls">
+                <div class="one-column">
+                <div class="fullwidth">
+                    <div class="buttonbar">
+                        <div class="buttonbar-item">
+                            <input id="Diagram_switch" type="radio" class="buttonbar-input" name="switch" checked onclick="_switchDiagram()">
+                            <div class="buttonbar-button">Diagram</div>
+                        </div>
+                        <div class="buttonbar-item">
+                            <input id="Graph_switch" type="radio" class="buttonbar-input" name="switch" onclick="_switchGraph()">
+                            <div class="buttonbar-button">Graph</div>
+                        </div>
+                    </div>
+                    
+                        <button id="Simulate" type="button" onclick="_runShot()">Start</button>
+                        <button id="Clear" type="button" onclick="_clearGraph()">Clear</button>
+                    
+                </div>    
+                </div>    
 
-            <div class="one-column">
-                <div class="buttonbar">
-                    <div class="buttonbar-item">
-                        <input id="Diagram_switch" type="radio" class="buttonbar-input" name="switch" checked onclick="_switchDiagram()">
-                        <div class="buttonbar-button">Diagram</div>
-                    </div>
-                    <div class="buttonbar-item">
-                        <input id="Graph_switch" type="radio" class="buttonbar-input" name="switch" onclick="_switchGraph()">
-                        <div class="buttonbar-button">Graph</div>
-                    </div>
-                </div>
-                <button id="Simulate" type="button" onclick="_runShot()">Start</button>
-                <button id="Clear" type="button" onclick="_clearGraph()">Clear</button>
-            </div>
 
             <div class="one-column">
                 <label class="checkcontainer" id="pumpcheckcontainer">Pump Pressure (bars)
@@ -160,17 +173,7 @@
         </div>
     </div>
 
-    <script src="inc/js/jquery-2.2.0.min.js"></script>
-    <script src="inc/js/Smooth-0.1.7.js"></script>
-    <script src="inc/js/bootstrap-slider.js"></script>
-    <!--<script src="inc/js/bootstrap-modal.js"></script>-->
-    <script src="inc/js/jcanvas.min.js"></script>
-    <script src="inc/js/jquery.flot.min.js"></script>
-    <script src="inc/js/jquery.flot.axislabels.js"></script>
-    <script src="inc/js/jquery.flot.dashes.js"></script>
-    <script src="inc/js/jquery.flot.curvedlines.js"></script>
-    <!--<script src="inc/js/app-base.js"></script>-->
-    <script src="Pressure and Flow.js"></script>
+
 
 </body>
 

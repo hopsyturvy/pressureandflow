@@ -5,11 +5,11 @@ var shotTimeout
 var puckResistanceGraph=[0,0], puckPressureGraph=[0,0], pumpPressureGraph=[0,0],flowRestrictorGraph=[0,0],flowGraph=[0,0];
 var oldpuckResistanceGraph=[0,0], oldpuckPressureGraph=[0,0], oldpumpPressureGraph=[0,0], oldflowRestrictorGraph=[0,0], oldflowGraph=[0,0]
 
-var puckResistanceDataset={color: "#2dc48a", label: 'Puck resistance', yaxis:2, data:puckResistanceGraph}
-var puckPressureDataset={color: "#e55acb", label: 'Puck pressure', yaxis:1, data:puckPressureGraph}
-var pumpPressureDataset={color: "#e02d4f", label: 'Pump pressure', yaxis:1, data:pumpPressureGraph}
-var flowRestrictorDataset={color: "#ffd93b", label: 'Restrictor resistance', yaxis:2, data:flowRestrictorGraph}
-var flowDataset={color: "#41aad8", label: 'Flow', yaxis:3, data:flowGraph}
+var puckResistanceDataset={color: "#6cbea1", label: 'Puck resistance', yaxis:2, data:puckResistanceGraph}
+var puckPressureDataset={color: "#bb6cae", label: 'Puck pressure', yaxis:1, data:puckPressureGraph}
+var pumpPressureDataset={color: "#ca4363", label: 'Pump pressure', yaxis:1, data:pumpPressureGraph}
+var flowRestrictorDataset={color: "#ebbd53", label: 'Restrictor resistance', yaxis:2, data:flowRestrictorGraph}
+var flowDataset={color: "#65a3ce", label: 'Flow', yaxis:3, data:flowGraph}
 
 var oldpuckResistanceDataset={color: "#adf0cd", label: 'oldPuck resistance', yaxis:2, data:oldpuckResistanceGraph}
 var oldpuckPressureDataset={color: "#e8b7e0", label: 'oldPuck pressure', yaxis:1, data:oldpuckResistanceGraph}
@@ -218,14 +218,14 @@ function _display() {
 	var Flow= parseFloat(jQuery('#SlideFlow').val())
 
 		//set colour: puck
-	var puckColor=[255-(Puck_pressure/12)*50,255-(Puck_pressure/12)*255,255-(Puck_pressure/12)*255]
+	var puckColor=[255-(Puck_pressure/12)*63,255-(Puck_pressure/12)*217,255-(Puck_pressure/12)*202]
 	document.getElementById("puck1").style.fill= "rgb("+puckColor+")";
 	document.getElementById("puck2").style.fill= "rgb("+puckColor+")";
 	document.getElementById("puck3").style.fill= "rgb("+puckColor+")";
 	document.getElementById("puck4").style.fill= "rgb("+puckColor+")";
 
 		//set colour: pump
-	var pumpColor=[255-(Pump_pressure/12)*50,255-(Pump_pressure/12)*255,255-(Pump_pressure/12)*255]
+	var pumpColor=[255-(Pump_pressure/12)*63,255-(Pump_pressure/12)*217,255-(Pump_pressure/12)*202]
 	document.getElementById("pump1").style.stroke= "rgb("+pumpColor+")";
 	document.getElementById("pump2").style.stroke= "rgb("+pumpColor+")";
 
