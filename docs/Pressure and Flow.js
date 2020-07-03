@@ -41,7 +41,7 @@ jQuery(document).ready(function () {
 	jQuery("#SlideFlow").slider({tooltip: "always"}).on("slideStop", function (value) {_flow()});
 	
 	//initialise graph
-var dataset = [
+	var dataset = [
 	oldpuckResistanceDataset,
 	oldpuckPressureDataset,
 	oldpumpPressureDataset,
@@ -52,24 +52,27 @@ var dataset = [
 	pumpPressureDataset,
 	flowRestrictorDataset,
 	flowDataset,
-];
+	];
 	var options = {
-	yaxes: [{
+		yaxes: [{
 			min: 0, max: 10, show:true, labelWidth: 0, labelHeight: 0, reserveSpace: null, tickFormatter: function(){return ""}
 		}, {
 			min: 0, max: 10, position: "right", show:false
 		}, {
 			min:0, max: 5, show:false
-	}],
-	xaxis: {min: 0, max: 30},
-	legend: false,
-	series: {
-		shadowSize: 0,
-	},
-	grid: {
-		hoverable: true
+		}],
+		xaxis: {min: 0, max: 30},
+		legend: false,
+		series: {
+			shadowSize: 0,
+		},
+		grid: {
+			hoverable: true
+		}
 	}
-}
+	
+	window.addEventListener("orientationchange", _resize);
+
 	plot=jQuery.plot(jQuery("#graph"), dataset, options);
 	
 	_resize()
@@ -90,7 +93,13 @@ function _resize() {
 		imageHeight = body.clientHeight;
 	}
 
+	let displaywidth = 640 * document.getElementById("displaybox").clientWidth / document.getElementById("displaybox").clientHeight
+	let displayoffset = (640-displaywidth)/2
+	let machinedrawing = document.getElementById("machinedrawing")
 	
+	machinedrawing.setAttribute("viewBox", displayoffset + " 0 " + displaywidth + " 640" )
+
+
 
 	document.getElementById("graph").style.height = imageHeight+'px';
 	plot.resize()
@@ -101,7 +110,7 @@ function _resize() {
 	document.getElementById("rain").style.top = puckLocation.bottom+"px"
 	document.getElementById("rain").style.left = puckLocation.left+puckLocation.width*.075+"px"
 	document.getElementById("rain").style.width = puckLocation.width*.85+"px"
-	document.getElementById("rain").style.height = imageHeight-puckLocation.bottom+"px"
+	document.getElementById("rain").style.height = puckLocation.width*1.5+"px"
 }
 
 
