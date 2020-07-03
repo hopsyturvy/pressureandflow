@@ -80,11 +80,20 @@ var dataset = [
 
 function _resize() {
 	var imageHeight
-	if(window.innerHeight > window.innerWidth){
+	console.log (window.innerWidth)
+	let aspectratio=1450/880
+	if(window.innerWidth / window.innerHeight < aspectratio) {
 		imageHeight = window.innerHeight-(Math.floor(document.getElementById("controls").clientHeight));
 	} else {
 		imageHeight = window.innerHeight;
 	}
+
+	console.log("imageHieght="+imageHeight)
+	console.log("aspectratio="+aspectratio)
+	console.log("window.innerHeight="+window.innerHeight)
+	console.log("window.innerWidth="+window.innerWidth)
+	console.log("window.innerHeight / window.innerWidth="+ (window.innerHeight / window.innerWidth))
+	
 
 	document.getElementById("graph").style.height = imageHeight+'px';
 	plot.resize()
