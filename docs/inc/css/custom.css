@@ -618,6 +618,7 @@ button:hover {
 
 .Center-Element {
   position: relative
+  overflow: hidden
 }
 
 svg {
