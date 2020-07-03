@@ -85,7 +85,7 @@ jQuery(document).ready(function () {
 function _resize() {
 	let imageHeight
 	let body=document.getElementById("appscreen")
-	
+	 console.log("resize")
 
 	let aspectratio=1450/880
 	if(body.clientWidth / body.clientHeight < aspectratio) {
@@ -98,6 +98,8 @@ function _resize() {
 	let displayoffset = (640-displaywidth)/2
 	let machinedrawing = document.getElementById("machinedrawing")
 	
+	console.log(displaywidth)
+
 	machinedrawing.setAttribute("viewBox", displayoffset + " 0 " + displaywidth + " 640" )
 
 
