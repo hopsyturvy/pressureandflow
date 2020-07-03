@@ -79,20 +79,17 @@ var dataset = [
 })
 
 function _resize() {
-	var imageHeight
-	console.log (window.innerWidth)
+	let imageHeight
+	let body=document.getElementById("appscreen")
+	
+
 	let aspectratio=1450/880
-	if(window.innerWidth / window.innerHeight < aspectratio) {
-		imageHeight = window.innerHeight-(Math.floor(document.getElementById("controls").clientHeight));
+	if(body.clientWidth / body.clientHeight < aspectratio) {
+		imageHeight = body.clientHeight-(Math.floor(document.getElementById("controls").clientHeight));
 	} else {
-		imageHeight = window.innerHeight;
+		imageHeight = body.clientHeight;
 	}
 
-	console.log("imageHieght="+imageHeight)
-	console.log("aspectratio="+aspectratio)
-	console.log("window.innerHeight="+window.innerHeight)
-	console.log("window.innerWidth="+window.innerWidth)
-	console.log("window.innerHeight / window.innerWidth="+ (window.innerHeight / window.innerWidth))
 	
 
 	document.getElementById("graph").style.height = imageHeight+'px';
@@ -101,7 +98,6 @@ function _resize() {
 	plot.draw()
 
 	let puckLocation = document.getElementById("puck4").getBoundingClientRect()
-	console.log(puckLocation)
 	document.getElementById("rain").style.top = puckLocation.bottom+"px"
 	document.getElementById("rain").style.left = puckLocation.left+puckLocation.width*.075+"px"
 	document.getElementById("rain").style.width = puckLocation.width*.85+"px"
