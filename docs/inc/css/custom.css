@@ -10,7 +10,7 @@
       top:0px;
       display: flex;
       justify-content: center;
-      
+      overflow: hidden;
     }
 
 .one-column {
@@ -614,13 +614,4 @@ button:hover {
   min-width: 360px;
   max-width: 1024px;
   min-height: 360px;
-}
-
-.Center-Element {
-  position: relative
-  overflow: hidden
-}
-
-svg {
-position: relative
 }
