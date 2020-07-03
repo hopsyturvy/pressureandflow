@@ -71,7 +71,7 @@ jQuery(document).ready(function () {
 		}
 	}
 	
-	window.addEventListener("orientationchange", _resize);
+	window.addEventListener("resize", _resize);
 
 	plot=jQuery.plot(jQuery("#graph"), dataset, options);
 	
@@ -80,6 +80,7 @@ jQuery(document).ready(function () {
 	
 	
 })
+
 
 function _resize() {
 	let imageHeight
