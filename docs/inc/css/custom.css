@@ -615,3 +615,7 @@ button:hover {
   max-width: 1024px;
   min-height: 360px;
 }
+
+.Center-Element {
+  position: relative
+}
