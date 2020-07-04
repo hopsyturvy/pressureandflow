@@ -77,7 +77,7 @@ jQuery(document).ready(function () {
 	
 	_resize()
 	_display()
-	
+	console.log("first init")
 	setTimeout(function(){ _resize; _display; console.log("init")}, 3000);
 	
 	
