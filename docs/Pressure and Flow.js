@@ -78,6 +78,8 @@ jQuery(document).ready(function () {
 	_resize()
 	_display()
 	
+	setTimeout(function(){ _resize; _display; console.log("init")}, 3000);
+	
 	
 })
 
