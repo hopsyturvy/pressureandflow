@@ -80,7 +80,7 @@ jQuery(document).ready(function () {
 	screenResize()
 	updateDisplay()
 	
-	
+	console.log('first init');
 })
 
 jQuery(document).ready(function(){
@@ -88,7 +88,8 @@ jQuery(document).ready(function(){
   });
 
 
-function screenResize() {
+function screenResize(inputFromWP) {
+	console.log(inputFromWP;)
 	let imageHeight
 	let body=document.getElementById("appscreen")
 	 console.log("resize")
