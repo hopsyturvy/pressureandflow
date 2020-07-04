@@ -19,6 +19,8 @@ var oldflowDataset={color: "#b3d7f4", label: 'oldFlow', yaxis:3, data:oldpuckRes
 
 var plot
 
+setTimeout(function(){ _resize; _display; console.log("init")}, 3000);
+
 
 jQuery(document).ready(function () {
 
@@ -75,13 +77,17 @@ jQuery(document).ready(function () {
 
 	plot=jQuery.plot(jQuery("#graph"), dataset, options);
 	
-	_resize()
-	_display()
-	console.log("first init")
-	setTimeout(function(){ _resize; _display; console.log("init")}, 3000);
+	_resize();
+	_display();
+	console.log("first init");
+	
 	
 	
 })
+
+jQuery(document).ready(function(){
+  console.log('doc loaded and ready');
+});
 
 
 function _resize() {
