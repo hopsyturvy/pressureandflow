@@ -89,7 +89,7 @@ jQuery(document).ready(function(){
 
 
 function screenResize(inputFromWP) {
-	console.log(inputFromWP;)
+	console.log(inputFromWP)
 	let imageHeight
 	let body=document.getElementById("appscreen")
 	 console.log("resize")
