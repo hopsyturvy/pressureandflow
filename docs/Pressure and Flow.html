@@ -25,7 +25,7 @@
     <script src="https://hopsyturvy.github.io/pressureandflow/docs/Pressure%20and%20Flow.js"></script>
 </head>
 
-<body onresize="_resize()">
+<body onresize="screenResize()">
 
 
 
@@ -111,17 +111,17 @@
                 <div class="fullwidth">
                     <div class="buttonbar">
                         <div class="buttonbar-item">
-                            <input id="Diagram_switch" type="radio" class="buttonbar-input" name="switch" checked onclick="_switchDiagram()">
+                            <input id="Diagram_switch" type="radio" class="buttonbar-input" name="switch" checked onclick="switchDiagram()">
                             <div class="buttonbar-button">Diagram</div>
                         </div>
                         <div class="buttonbar-item">
-                            <input id="Graph_switch" type="radio" class="buttonbar-input" name="switch" onclick="_switchGraph()">
+                            <input id="Graph_switch" type="radio" class="buttonbar-input" name="switch" onclick="switchGraph()">
                             <div class="buttonbar-button">Graph</div>
                         </div>
                     </div>
                     
-                        <button id="Simulate" type="button" onclick="_runShot()">Start</button>
-                        <button id="Clear" type="button" onclick="_clearGraph()">Clear</button>
+                        <button id="Simulate" type="button" onclick="runShot()">Start</button>
+                        <button id="Clear" type="button" onclick="clearGraph()">Clear</button>
                     
                 </div>    
                 </div>    
@@ -129,19 +129,19 @@
 
             <div class="one-column">
                 <label class="checkcontainer" id="pumpcheckcontainer">Pump Pressure (bars)
-                    <input type="checkbox" checked="checked" id="pumpcheck" onClick="_toggleSeries(2, 7);">
+                    <input type="checkbox" checked="checked" id="pumpcheck" onClick="toggleSeries(2, 7);">
                     <span class="checkmark" id="pumpcheckmark"></span>
                 </label>
-                <input id="SlidePump_pressure" type="text" data-slider-min="0" data-slider-max="12"
+                <input id="SlidePumpPressure" type="text" data-slider-min="0" data-slider-max="12"
                     data-slider-value="9" data-slider-step="0.5" />
             </div>
 
             <div class="one-column">
                 <label class="checkcontainer" id="puckcheckcontainer">Puck Pressure (bars)
-                    <input type="checkbox" checked="checked" id="puckcheck" onClick="_toggleSeries(1, 6);">
+                    <input type="checkbox" checked="checked" id="puckcheck" onClick="toggleSeries(1, 6);">
                     <span class="checkmark" id="puckcheckmark"></span>
                 </label>
-                <input id="SlidePuck_pressure" type="text" data-slider-min="0" data-slider-max="12"
+                <input id="SlidePuckPressure" type="text" data-slider-min="0" data-slider-max="12"
                     data-slider-value="7.4" data-slider-step="0.01"
                     data-slider-ticks="[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,5,5.1,5.2,5.3,5.4,5.5,5.6,5.7,5.8,5.9,6,6.1,6.2,6.3,6.4,6.5,6.6,6.7,6.8,6.9,7,7.1,7.2,7.3,7.4,7.5,7.6,7.7,7.8,7.9,8,8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,9,9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,10,10.1,10.2,10.3,10.4,10.5,10.6,10.7,10.8,10.9,11,11.1,11.2,11.3,11.4,11.5,11.6,11.7,11.8,11.9,12]"
                     data-slider-ticks-snap-bounds="0.05" />
@@ -149,19 +149,19 @@
 
             <div class="one-column">
                 <label class="checkcontainer" id="restrictorcheckcontainer">Flow Restrictor Resistance
-                    <input type="checkbox" checked="checked" id="restrictorcheck" onClick="_toggleSeries(3, 8);">
+                    <input type="checkbox" checked="checked" id="restrictorcheck" onClick="toggleSeries(3, 8);">
                     <span class="checkmark" id="restrictorcheckmark"></span>
                 </label>
-                <input id="SlideFlow_restrictor_resistance" type="range" data-slider-min="0.1" data-slider-max="5"
+                <input id="SlideFlowRestrictorResistance" type="range" data-slider-min="0.1" data-slider-max="5"
                     data-slider-value="1.1" data-slider-step="0.1" />
             </div>
 
             <div class="one-column">
                 <label class="checkcontainer" id="resistancecheckcontainer">Puck Resistance
-                    <input type="checkbox" checked="checked" id="resistancecheck" onClick="_toggleSeries(0, 5);">
+                    <input type="checkbox" checked="checked" id="resistancecheck" onClick="toggleSeries(0, 5);">
                     <span class="checkmark" id="resistancecheckmark"></span>
                 </label>
-                <input id="SlidePuck_resistance" type="range" data-slider-min="0" data-slider-max="10"
+                <input id="SlidePuckResistance" type="range" data-slider-min="0" data-slider-max="10"
                     data-slider-value="5" data-slider-step="0.01"
                     data-slider-ticks="[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,5,5.1,5.2,5.3,5.4,5.5,5.6,5.7,5.8,5.9,6,6.1,6.2,6.3,6.4,6.5,6.6,6.7,6.8,6.9,7,7.1,7.2,7.3,7.4,7.5,7.6,7.7,7.8,7.9,8,8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,9,9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,10]"
                     data-slider-ticks-snap-bounds="0.05" />
@@ -170,7 +170,7 @@
 
             <div class="one-column">
                 <label class="checkcontainer" id="flowcheckcontainer">Flow (ml/sec)
-                    <input type="checkbox" checked="checked" id="flowcheck" onClick="_toggleSeries(4, 9);">
+                    <input type="checkbox" checked="checked" id="flowcheck" onClick="toggleSeries(4, 9);">
                     <span class="checkmark" id="flowcheckmark"></span>
                 </label>
                 <input id="SlideFlow" type="range" data-slider-min="0" data-slider-max="15" data-slider-value="1.5"
