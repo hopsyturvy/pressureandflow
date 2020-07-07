@@ -88,7 +88,7 @@ jQuery(document).ready(function () {
 		}, {
 			min: 0, max: 10, position: "right", show:false
 		}, {
-			min:0, max: 5, show:false
+			min:0, max: 10, show:false
 		}],
 		xaxis: {min: 0, max: 30},
 		legend: false,
