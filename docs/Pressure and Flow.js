@@ -392,8 +392,8 @@ function puckSim() {
 		//preinfusion time = 5 +- 1s
 	var preinfuse=5 + Math.floor(Math.random()*2-1)
 		//set resistance: baseline and additional
-	var baselineRes=1.5
-	var res=5 + Math.floor(Math.random()*2-1)
+	var baselineRes=0.5
+	var res=6 + Math.floor(Math.random()*2-1)
 
 		//preinfusion steps
 	for (var i=0; i < preinfuse; i+=0.5) {
