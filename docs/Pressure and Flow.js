@@ -408,7 +408,7 @@ function puckSim() {
 		//shot flowing steps
 	for (var i=0; i < (30-preinfuse); i+=0.5) {
 		puckResistanceData.push ([i+preinfuse+2, res+baselineRes])
-		var res=res*(0.7+Math.random()*.4)
+		var res=res*(0.8+Math.random()*.3)
 	}
 
 
