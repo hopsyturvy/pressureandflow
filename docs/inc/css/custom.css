@@ -577,7 +577,7 @@ button:hover {
     align-items: stretch;
     flex-direction: column;
     margin: 0;
-    overflow: scroll
+    overflow: auto;
   }
 
   .full-column {
